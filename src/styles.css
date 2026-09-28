@@ -100,11 +100,12 @@
   --tc-ink: oklch(0.2699 0.0964 257.16);
   --tc-surface: oklch(0.9537 0.0052 247.88);
   --tc-highlight: oklch(0.5648 0.2298 26.41);
-  --box-red: oklch(0.5648 0.2298 26.41);
-  --box-navy: oklch(0.2699 0.0964 257.16);
-  --box-green: oklch(0.6837 0.1492 134.60);
-  --box-blue: oklch(0.6708 0.1089 247.50);
-  --box-orange: oklch(0.7777 0.1586 59.80);
+  /* 9-box colors matching the reference image */
+  --box-orange: oklch(0.85 0.15 88);   /* UW - yellow */
+  --box-green: oklch(0.72 0.15 145);   /* TT - green */
+  --box-blue: oklch(0.69 0.1 180);     /* KP - teal */
+  --box-red: oklch(0.7 0.18 50);       /* MC - orange */
+  --box-navy: oklch(0.62 0.14 250);    /* SP - blue */
 }
 
 
