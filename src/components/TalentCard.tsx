@@ -342,15 +342,11 @@ export function TalentCard({
           <div className="mt-6">
             <ColumnTitle>{t.readiness}</ColumnTitle>
             <div className="mt-4 space-y-0.5">
-              {readinessOptions.map((opt) => (
+              {readinessOptions.map((opt, i) => (
                 <Option
                   key={opt}
                   label={opt}
-                  checked={talent.readiness.some(
-                    (r) =>
-                      r.toLowerCase().includes(opt.toLowerCase().split(" ")[0]!) ||
-                      opt.toLowerCase().includes(r.toLowerCase().split(" ")[0]!),
-                  )}
+                  checked={readinessChecked(talent.readiness, READINESS_KEYS[i]!)}
                 />
               ))}
             </div>
