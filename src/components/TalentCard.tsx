@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Camera, ImagePlus, Trash2 } from "lucide-react";
 import type { Talent } from "@/lib/talent";
-import type { Dict } from "@/lib/i18n";
+import { dict, type Dict } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 /** 9-box quadrants, matching the company's matrix image. */
@@ -33,10 +33,37 @@ function Option({ label, checked }: { label: string; checked: boolean }) {
   );
 }
 
+const LEVEL_ALIASES: Record<string, string[]> = {
+  high: ["high", "alto", "alta"],
+  medium: ["medium", "médio", "medio", "média", "media"],
+  low: ["low", "baixo", "baixa"],
+};
+
 function matches(value: string, option: string) {
   const v = value.trim().toLowerCase();
   if (!v) return false;
-  return v === option.toLowerCase() || v.startsWith(option.toLowerCase().slice(0, 3));
+  const aliases = LEVEL_ALIASES[option.toLowerCase()] ?? [option.toLowerCase()];
+  return aliases.some((a) => v === a || v.startsWith(a.slice(0, 3)));
+}
+
+const READINESS_KEYS = [
+  "readinessStrategic",
+  "readinessExpatriation",
+  "readinessScope",
+  "readinessRotation",
+  "readinessMentoring",
+  "readinessLeadership",
+  "readinessOthers",
+] as const;
+
+function readinessChecked(values: string[], key: (typeof READINESS_KEYS)[number]) {
+  const labels = [dict.en[key], dict.pt[key]].map((s) => s.toLowerCase());
+  return values.some((r) => {
+    const rv = r.toLowerCase();
+    return labels.some(
+      (l) => rv.includes(l.split(" ")[0]!) || l.includes(rv.split(" ")[0]!),
+    );
+  });
 }
 
 function yesNo(value: string) {
