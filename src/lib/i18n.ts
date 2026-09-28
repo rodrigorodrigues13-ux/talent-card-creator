@@ -51,7 +51,7 @@ export const dict = {
     education: "Education",
     competencies: "Competencies",
     development: "Development opportunities",
-    readiness: "Readiness",
+    readiness: "Action Plan",
     yes: "Yes",
     no: "No",
     cards: "cards",
