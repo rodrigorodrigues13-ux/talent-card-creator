@@ -31,7 +31,7 @@ export const dict = {
     box2026: "Box 2026",
     riskOfLoss: "Risk of loss",
     criticality: "Position criticality",
-    succession: "Next target position",
+    succession: "Targeted Next Role",
     successors: "Successors",
     immediate: "Immediate",
     shortTerm: "Short term",
