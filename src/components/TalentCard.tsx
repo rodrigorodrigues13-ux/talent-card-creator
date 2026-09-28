@@ -25,9 +25,9 @@ function matchQuadrant(value: string): string {
 }
 
 /** "High ( x )" / "Medium (  )" style option. */
-function Option({ label, checked }: { label: string; checked: boolean }) {
+function Option({ label, checked, nowrap }: { label: string; checked: boolean; nowrap?: boolean }) {
   return (
-    <div className="text-[11px] leading-5 text-[var(--tc-ink)]">
+    <div className={cn("text-[11px] leading-5 text-[var(--tc-ink)]", nowrap && "whitespace-nowrap tracking-tight")}>
       {label} <span className="font-semibold">({checked ? " x " : "   "})</span>
     </div>
   );
@@ -346,6 +346,7 @@ export function TalentCard({
                 <Option
                   key={opt}
                   label={opt}
+                  nowrap
                   checked={readinessChecked(talent.readiness, READINESS_KEYS[i]!)}
                 />
               ))}
