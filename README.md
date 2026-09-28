@@ -1,12 +1,14 @@
-# Talent Card Creator
+# Talent Upload Hub
 
-Vamos criar um talent card, por enquanto você não faz nada apenas cria o projeto em branco
+https://excel-to-talent.lovable.app/ quero que você entenda tudo que existe de código para criar esse site que mandei, e após isso veja por que não está gerando em pdf. Além disso, no local foto, quero que tenha a opção de fazer um upload na própria tela
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://talent-maker-hub.lovable.app
+
 ## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/9a4f970a-258e-4c90-a3c8-2f72e0066ab0).
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/a89bc879-73f2-46b0-9031-705806b81d70).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
