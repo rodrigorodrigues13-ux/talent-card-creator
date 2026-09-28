@@ -19,7 +19,7 @@ export const dict = {
     age: "Age",
     gender: "Gender",
     expatriate: "Expatriate",
-    originCountry: "Country of origin",
+    originCountry: "Home Country",
     expatriationEndDate: "Expatriation end date",
     businessLine: "Business line",
     manager: "Manager",
