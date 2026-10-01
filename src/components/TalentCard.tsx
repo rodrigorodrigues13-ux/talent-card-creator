@@ -229,6 +229,9 @@ export function TalentCard({
             <div>
               {t.jobTitle}: {talent.jobTitle}
             </div>
+            <div>
+              {t.status}: {talent.status}
+            </div>
           </div>
         </div>
 
