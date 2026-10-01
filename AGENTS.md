@@ -9,5 +9,5 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the exported Excel template's column order synchronized with `rowToTalent`; its new 35-column layout includes expatriation fields after Gender and omits Immediate Successors, so card imports remain aligned.
-- Keep Portuguese and English Excel templates in the same 35-column order, and recognize both expatriate headings on import so localized exports map correctly.
+- Keep the exported Excel template's column order synchronized with `rowToTalent`; its new 36-column layout includes expatriation fields after Gender and omits Immediate Successors, Status follows Job Title, so card imports remain aligned.
+- Keep Portuguese and English Excel templates in the same 36-column order, and recognize both expatriate headings on import so localized exports map correctly.

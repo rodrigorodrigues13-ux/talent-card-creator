@@ -14,6 +14,7 @@ export type Talent = {
   businessLine: string;
   age: string;
   jobTitle: string;
+  status: string;
   talentFactory: string;
   c200: string;
   manager: string;
@@ -62,32 +63,33 @@ export function rowToTalent(row: unknown[], index: number): Talent {
     businessLine: c(6),
     age: c(7),
     jobTitle: c(8),
-    talentFactory: c(9),
-    c200: c(10),
-    manager: c(11),
-    timeInRole: c(12),
-    timeInCompany: c(13),
-    box2025: c(14),
-    box2026: c(15),
-    riskOfLoss: c(16),
-    criticality: c(17),
-    successionImmediate: c(18),
-    successionShort: c(19),
-    successionMedium: c(20),
-    successionLong: c(21),
-    langAdvanced: c(22),
-    langIntermediate: c(23),
-    langBasic: c(24),
-    nationalMobility: c(25),
-    internationalMobility: c(26),
-    successorsShort: c(27),
-    successorsMedium: c(28),
-    successorsLong: c(29),
-    careerHistory: list(row[30]),
-    education: list(row[31]),
-    competencies: list(row[32]),
-    development: list(row[33]),
-    readiness: list(row[34]),
+    status: c(9),
+    talentFactory: c(10),
+    c200: c(11),
+    manager: c(12),
+    timeInRole: c(13),
+    timeInCompany: c(14),
+    box2025: c(15),
+    box2026: c(16),
+    riskOfLoss: c(17),
+    criticality: c(18),
+    successionImmediate: c(19),
+    successionShort: c(20),
+    successionMedium: c(21),
+    successionLong: c(22),
+    langAdvanced: c(23),
+    langIntermediate: c(24),
+    langBasic: c(25),
+    nationalMobility: c(26),
+    internationalMobility: c(27),
+    successorsShort: c(28),
+    successorsMedium: c(29),
+    successorsLong: c(30),
+    careerHistory: list(row[31]),
+    education: list(row[32]),
+    competencies: list(row[33]),
+    development: list(row[34]),
+    readiness: list(row[35]),
   };
 }
 
@@ -100,6 +102,7 @@ export async function parseWorkbook(file: File): Promise<Talent[]> {
   const rows = XLSX.utils.sheet_to_json<unknown[]>(sheet, { header: 1, defval: "" });
   const headers = (rows[0] ?? []).map(clean);
   const hasNewFields = headers.some((h) => /^(Expatriado|Expatriate)/i.test(h));
+  const hasStatus = headers.some((h) => h === "Status");
   const hasImmediateSuccessor = headers.some((h) => h === "Successors - Immediate");
   return rows
     .slice(1)
@@ -108,6 +111,7 @@ export async function parseWorkbook(file: File): Promise<Talent[]> {
       const normalized = [...row];
       if (!hasNewFields) normalized.splice(3, 0, "", "", "", "");
       if (hasImmediateSuccessor) normalized.splice(27, 1);
+      if (!hasStatus) normalized.splice(9, 0, "");
       return rowToTalent(normalized, index);
     });
 }
