@@ -71,6 +71,16 @@ function yesNo(value: string) {
   return { yes: v.startsWith("Y") || v.startsWith("S"), no: v.startsWith("N") };
 }
 
+function translateIdCriteria(value: string, t: Dict) {
+  const v = value.trim().toLowerCase();
+  if (!v) return "";
+  if (v.startsWith("tt")) return "TT N-1 Comex";
+  if (v.startsWith("succ") || v.startsWith("plano")) return t.idCritSucc;
+  if (v.startsWith("expat")) return t.idCritExpat;
+  if (v.startsWith("other") || v.startsWith("outr")) return t.idCritOther;
+  return value;
+}
+
 function YesNo({ label, value }: { label: string; value: string }) {
   const { yes, no } = yesNo(value);
   return (
@@ -246,6 +256,9 @@ export function TalentCard({
           </div>
           <div>
             {t.timeInCompany}: {talent.timeInCompany}
+          </div>
+          <div>
+            {t.idCriteria}: {translateIdCriteria(talent.idCriteria, t)}
           </div>
         </div>
 
