@@ -20,6 +20,7 @@ export type Talent = {
   manager: string;
   timeInRole: string;
   timeInCompany: string;
+  idCriteria: string;
   box2025: string;
   box2026: string;
   riskOfLoss: string;
@@ -69,27 +70,28 @@ export function rowToTalent(row: unknown[], index: number): Talent {
     manager: c(12),
     timeInRole: c(13),
     timeInCompany: c(14),
-    box2025: c(15),
-    box2026: c(16),
-    riskOfLoss: c(17),
-    criticality: c(18),
-    successionImmediate: c(19),
-    successionShort: c(20),
-    successionMedium: c(21),
-    successionLong: c(22),
-    langAdvanced: c(23),
-    langIntermediate: c(24),
-    langBasic: c(25),
-    nationalMobility: c(26),
-    internationalMobility: c(27),
-    successorsShort: c(28),
-    successorsMedium: c(29),
-    successorsLong: c(30),
-    careerHistory: list(row[31]),
-    education: list(row[32]),
-    competencies: list(row[33]),
-    development: list(row[34]),
-    readiness: list(row[35]),
+    idCriteria: c(15),
+    box2025: c(16),
+    box2026: c(17),
+    riskOfLoss: c(18),
+    criticality: c(19),
+    successionImmediate: c(20),
+    successionShort: c(21),
+    successionMedium: c(22),
+    successionLong: c(23),
+    langAdvanced: c(24),
+    langIntermediate: c(25),
+    langBasic: c(26),
+    nationalMobility: c(27),
+    internationalMobility: c(28),
+    successorsShort: c(29),
+    successorsMedium: c(30),
+    successorsLong: c(31),
+    careerHistory: list(row[32]),
+    education: list(row[33]),
+    competencies: list(row[34]),
+    development: list(row[35]),
+    readiness: list(row[36]),
   };
 }
 
@@ -103,6 +105,7 @@ export async function parseWorkbook(file: File): Promise<Talent[]> {
   const headers = (rows[0] ?? []).map(clean);
   const hasNewFields = headers.some((h) => /^(Expatriado|Expatriate)/i.test(h));
   const hasStatus = headers.some((h) => h === "Status");
+  const hasIdCriteria = headers.some((h) => /^(ID Criteria|Critério de identificação)/i.test(h));
   const hasImmediateSuccessor = headers.some((h) => h === "Successors - Immediate");
   return rows
     .slice(1)
@@ -112,6 +115,7 @@ export async function parseWorkbook(file: File): Promise<Talent[]> {
       if (!hasNewFields) normalized.splice(3, 0, "", "", "", "");
       if (hasImmediateSuccessor) normalized.splice(27, 1);
       if (!hasStatus) normalized.splice(9, 0, "");
+      if (!hasIdCriteria) normalized.splice(15, 0, "");
       return rowToTalent(normalized, index);
     });
 }
